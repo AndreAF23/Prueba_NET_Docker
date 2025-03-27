@@ -1,0 +1,32 @@
+@{
+    ViewBag.Title = "Asignaturas";
+}
+
+<h2>Listado de Asignaturas</h2>
+
+<table id="tablaAsignaturas" class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>ECTS</th>
+            <th>Nombre</th>
+            <th>Personalizable</th>
+            <th>Horas</th>
+            <th>Modalidad</th>
+            <th>Publicar Web</th>
+            <th>Fecha Alta</th>
+            <th>Fecha Modificación</th>
+            <th>Usuario Modificación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- llamo al js -->
+    </tbody>
+</table>
+<script>
+    const baseUrl = "@Context.Request.Scheme://@Context.Request.Host";
+</script>
+<script src="~/js/asignaturas.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
