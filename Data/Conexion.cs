@@ -18,6 +18,7 @@ namespace Prueba_DockerNET.Data
                 throw new InvalidOperationException("La cadena de conexión está vacía o no inicializada.");
 
             return new SqlConnection(connectionString);
+            //prueba despliegue 3
         }
     }
 }
