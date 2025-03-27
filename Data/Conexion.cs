@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
-using Microsoft.Extensions.Configuration;
 
 namespace Prueba_DockerNET.Data
 {
-    public class Conexion
+    public static class Conexion
     {
-        private readonly IConfiguration _configuration;
-        private readonly string? _connectionString;
-
-        public Conexion(IConfiguration configuration)
+        public static IDbConnection CrearConexion()
         {
-            _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("DefaultConnection");
-        }
+            // Asegúrate que esto esté escrito tal cual
 
-        public IDbConnection CrearConexion()
-        {
-            return new SqlConnection(_connectionString);
+            // PARA VS .NET
+            //string connectionString = "Server=host.docker.internal,1433;Database=Prueba_NET;User Id=sa;Password=lolpollo87;TrustServerCertificate=true;";
+
+            //PARA DOCKER MANUAL CON .env
+            string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            if (string.IsNullOrEmpty(connectionString))
+                throw new InvalidOperationException("La cadena de conexión está vacía o no inicializada.");
+
+            return new SqlConnection(connectionString);
         }
     }
 }

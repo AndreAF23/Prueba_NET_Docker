@@ -1,29 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Prueba_DockerNET.Data;
 using Prueba_DockerNET.Models;
+using System.Collections.Generic;
 
 namespace Prueba_DockerNET.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class AsignaturaController : ControllerBase
     {
         [HttpGet]
         [Route("")]
-        public IEnumerable<TAsignaturas> Get()
+        public IActionResult Get()
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            string? cadenaConexion = config.GetConnectionString("DefaultConnection");
-
-            AsignaturaRepository repo = new AsignaturaRepository(cadenaConexion);
-
-            return repo.obtenerDATA();
+            try
+            {
+                using var db = Conexion.CrearConexion();
+                var repo = new AsignaturaRepository(db.ConnectionString);
+                var data = repo.obtenerDATA();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al consultar la base de datos: {ex.Message}");
+            }
         }
     }
 }
