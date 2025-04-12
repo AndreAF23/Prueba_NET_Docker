@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    
+    const baseUrl = window.location.origin;
     const API_URL = `${baseUrl}/api/Asignatura`;
     //verificar url
     //console.log(API_URL)
