@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews()
     });
 
 var app = builder.Build();
-
+DotNetEnv.Env.Load();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
