@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!response.ok) throw new Error("Error al obtener los datos.");
             
             const asignaturas = await response.json();
-            console.log(asignaturas);
+            //console.log(asignaturas);
             
             const tabla = document.getElementById("tablaAsignaturas").getElementsByTagName("tbody")[0];
 
