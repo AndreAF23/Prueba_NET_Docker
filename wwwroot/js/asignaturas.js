@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             const response = await fetch(API_URL);
             if (!response.ok) throw new Error("Error al obtener los datos.");
-
+            
             const asignaturas = await response.json();
+            console.log(asignaturas);
+            
             const tabla = document.getElementById("tablaAsignaturas").getElementsByTagName("tbody")[0];
 
             //limpiar tabla
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${asignatura.ECTS !== null && asignatura.ECTS !== undefined ? asignatura.ECTS.toFixed(2) : "Sin datos"}</td>
                     <td>${asignatura.Asignatura}</td>
                     <td>${asignatura.EsPersonalizable ? "Sí" : "No"}</td>
-                    <td>${asignatura.Horas !== null ? asignatura.Horas.toFixed(2) : "Sin datos"}</td>
+                    <td>${asignatura.Horas != null ? asignatura.Horas.toFixed(2) : "Sin datos"}</td>
                     <td>${asignatura.IdModalidad}</td>
                     <td>${asignatura.PublicarWeb ? "Sí" : "No"}</td>
                     <td>${formatearFecha(asignatura.FechaAlta)}</td>
