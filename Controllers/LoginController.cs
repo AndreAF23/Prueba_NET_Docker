@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Prueba_DockerNET.Data;
 using Prueba_DockerNET.Models;
 using Prueba_DockerNET.Services;
 
@@ -27,5 +28,24 @@ namespace Prueba_DockerNET.Controllers
                 return Unauthorized(new { message = "Credenciales incorrectas" });
             }
         }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> LoginCreate([FromBody] Usuario lm)
+        {
+            if (string.IsNullOrEmpty(lm.usuario) || string.IsNullOrEmpty(lm.password))
+            {
+                return BadRequest(new { message = "Debe ingresar usuario y contraseña." });
+            }
+
+            var respuesta = await LoginRepository.registrarUsuario(lm);
+            if (respuesta == true)
+            {
+                return Ok(new { message = "Registro exitoso" });
+            }
+            else
+            {
+                return BadRequest(new { message = "No se registró usuario" });
+            }
+        }    
     }
 }

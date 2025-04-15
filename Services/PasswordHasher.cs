@@ -31,5 +31,27 @@ namespace Prueba_DockerNET.Services
             return PasswordHasher.VerifyPassword(password, user.password_hash, user.password_salt);
         }
 
+        public static (string passwordHash, string passwordSalt) HashPasswordConSalt(string plainPassword)
+        {
+            // 1. Generar un salt aleatorio de 16 bytes
+            byte[] saltBytes = new byte[16];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(saltBytes);
+            }
+
+            // 2. Derivar la clave (hashear)
+            using (var pbkdf2 = new Rfc2898DeriveBytes(plainPassword, saltBytes, 100000))
+            {
+                byte[] hashBytes = pbkdf2.GetBytes(64); // 64 bytes = 512 bits
+
+                // 3. Convertir a base64 para guardar como string
+                string hashBase64 = Convert.ToBase64String(hashBytes);
+                string saltBase64 = Convert.ToBase64String(saltBytes);
+
+                return (hashBase64, saltBase64);
+            }
+        }
+
     }
 }

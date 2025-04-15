@@ -7,7 +7,7 @@ namespace Prueba_DockerNET.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = "Login";
-            return View(); // Renderiza la vista Index.cshtml
+            return View();
         }
     }
 
