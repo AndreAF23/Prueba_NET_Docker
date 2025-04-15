@@ -1,20 +1,34 @@
+//uso variable global base url
+import { baseUrl } from './variablesGlobales.js';
+
 document.getElementById("btnValidarUsuario").onclick = async (event) => {
-    event.preventDefault(); // Para evitar que el bot�n recargue la p�gina
+    event.preventDefault(); // No se recarge cuando se clickea al boton : ya que es un form
 
-    const pass = verificarAPI();
-    console.log("vghvghfx  " + pass);
-
+    const pass = await validarUsuario();
+    //console.log(pass);
+    
     pass === true ? accederLogin() : denegarLogin();
 };
 
 
-function verificarAPI ()
+async function validarUsuario ()
 {
-    const bypass=true;
-    //se llama a la api y le asigna valor a bypass
+    var bypass;
+    //llamada a api para validarUsuario
+    await fetch(`${baseUrl}/api/login/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            usuario: $("#inputUsuario").val(),
+            password: $("#inputPsswd").val()
+        })
+    })
+    .then(res => { res.ok ? bypass=true : bypass=false })
+    
     return bypass;
 }
-console.log("Andre");
 
 function accederLogin(){
 
@@ -23,10 +37,12 @@ function accederLogin(){
         text: "Acceso validado",
         icon: "success"
       });
-
+    
+    
     setTimeout(function(){
-        window.location.href = "AsignaturaVista.cshtml";
+        window.location.href = `${baseUrl}/AsignaturaView`;
     }, 2000);
+    
 }
 
 async function denegarLogin ()
