@@ -2,12 +2,11 @@
 import { baseUrl } from './variablesGlobales.js';
 
 document.getElementById("btnValidarUsuario").onclick = async (event) => {
-    event.preventDefault(); // No se recarge cuando se clickea al boton : ya que es un form
-
     const pass = await validarUsuario();
     //console.log(pass);
     
     pass === true ? accederLogin() : denegarLogin();
+    
 };
 
 $("#btnGoToRegistro")[0].onclick = ()=>{
@@ -26,12 +25,33 @@ $("#btnLoginVolver")[0].onclick = ()=>{
 }
 
 $("#btnRegistrarUsuario")[0].onclick = async(event)=>{
-    event.preventDefault();
 
-    const pass = await registrarUsuario();
-    //console.log(pass);
+    event.preventDefault(); // No se recarge cuando se clickea al boton : ya que es un form
+    if(validarForm()){
+        if($("#inputPasswordReg2").val()==$("#inputPasswordReg").val()){
+            event.preventDefault();
+
+            const pass = await registrarUsuario();
+            //console.log(pass);
+            
+            pass === true ? registroExitoso() : registroInvalido();
+        }else{
+            Swal.fire({
+                title: "",
+                text: "Las contraseñas deben coincidir",
+                icon: "question"
+            });
+        }
+        
+    }else{
+        Swal.fire({
+            title: "",
+            text: "Llene todos los campos",
+            icon: "question"
+        });
+    }
+
     
-    pass === true ? registroExitoso() : registroInvalido();
 }
 
 async function validarUsuario ()
@@ -162,6 +182,11 @@ $("#formLogin").on("keydown", async function (e) {
 function limpiarInputs(){
     $("#inputUsuarioReg").val('');
     $("#inputPasswordReg").val('');
+    $("#inputPasswordReg2").val('');
     $("#inputUsuario").val('');
     $("#inputPsswd").val('');
+}
+
+function validarForm() {
+    return !($("#inputUsuarioReg").val() == "" || $("#inputPasswordReg").val() == "" || $("#inputPasswordReg2").val() == "");
 }
