@@ -56,18 +56,28 @@ async function datosGlobales() {
 
 $(document).ready(function () {
     $("#btnViewMenuPrincipal").on("click", async () => {
-        desactivarVistas();
-        $("#viewMenuPrincipal").css("display", "block");
+        activarVista("viewMenuPrincipal")
+
     });
 
     $("#viewListarPersonal").on("click", () => {
-        desactivarVistas();
-        $("#viewPersonal").css("display", "block");
+        activarVista("viewPersonal")
+    });
+
+    $("#btnviewRegistrarPersonal").on("click", () => {
+        activarVista("viewRegistrarPersonal")
     });
 });
 
 
-function desactivarVistas() {
-    $("#viewPersonal").css("display","none");
+export async function desactivarVistas() {
     $("#viewMenuPrincipal").css("display","none");
+    $("#viewPersonal").css("display","none");
+    $("#viewRegistrarPersonal").css("display","none");
+    
+}
+
+export async function activarVista(vista){
+    await desactivarVistas();
+    $("#" + vista).css("display","block");
 }

@@ -13,7 +13,7 @@
     </a>
     <div class="collapse ps-4" id="submenuPersonal">
         <a id="viewListarPersonal" class="d-block text-decoration-none text-light">Listar</a>
-        <a id="viewRegistrarPersonal" class="d-block text-decoration-none text-light">Registrar</a>
+        <a id="btnviewRegistrarPersonal" class="d-block text-decoration-none text-light">Registrar</a>
     </div>
     <a href="#"><i class="fas fa-clipboard-list"></i> Asistencias</a>
     <a href="#"><i class="fas fa-calendar-alt"></i> Turnos</a>
@@ -21,10 +21,28 @@
 
 </div>
 
-<div id="viewMenuPrincipal" class="main-content" style="display: block;">
-    <h1>Bienvenido</h1>
-    <p>Este es el contenido principal de tu sistema de asistencia para el hospital.</p>
+<div id="viewMenuPrincipal" class="main-content p-5" style="display: block;">
+  <div class="text-center">
+    <h1 class="display-4 fw-bold mb-3">¡Bienvenido al Sistema de Asistencia!</h1>
+    <p class="lead">Este sistema ha sido desarrollado para facilitar el control y gestión de asistencias del personal de <strong>NombreDeHospital</strong>.</p>
+    
+    <hr class="my-4">
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="alert alert-primary shadow-sm" role="alert">
+          🏥 Recuerda registrar tu asistencia al ingresar y salir de tus turnos.  
+        </div>
+        <div class="alert alert-info shadow-sm" role="alert">
+          💡 Si tienes alguna duda o problema, contacta al área de soporte técnico.
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-4 text-muted">Gracias por formar parte de <strong>NombreDeHospital</strong>. Tu compromiso hace la diferencia.</p>
+  </div>
 </div>
+
 
 <div id="viewPersonal" style="display: none;">
     <table class="table table-striped">
@@ -84,7 +102,7 @@
                     <div class="mb-3">
                         <label for="selectCargo" class="form-label">Cargo</label>
                         <select class="form-select" id="selectCargo">
-                            
+
                         </select>
                     </div>
 
@@ -92,7 +110,7 @@
                     <div class="mb-3">
                         <label for="selectArea" class="form-label">Area</label>
                         <select class="form-select" id="selectArea">
-                            
+
                         </select>
                     </div>
 
@@ -119,11 +137,62 @@
         </div>
     </div>
 
+</div>
+
+<div id="viewRegistrarPersonal" class="main-content" style="display: none;">
+    <form autocomplete="off">
+        <div class="form-group">
+            <label for="inputRegistrarNombres">Nombres</label>
+            <input type="text" maxlength="50" class="form-control" id="inputRegistrarNombres" required>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <label for="inputRegistrarApellidoPaterno">Apellido Paterno</label>
+                <input type="text" maxlength="50" class="form-control" id="inputRegistrarApellidoPaterno">
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputRegistrarApellidoMaterno">Apellido Materno</label>
+                <input type="text" maxlength="50" class="form-control" id="inputRegistrarApellidoMaterno">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputRegistrarDNI">DNI</label>
+            <input type="text" maxlength="8" class="form-control" id="inputRegistrarDNI" inputmode="numeric">
+        </div>
+
+        <div class="mt-3">
+            <label for="inputRegistrarCargo">Cargo</label>
+            <select id="inputRegistrarCargo" class="form-select" aria-label="Cargo"></select>
+        </div>
+
+        <div class="mt-3">
+            <label for="inputRegistrarArea">Área</label>
+            <select id="inputRegistrarArea" class="form-select" aria-label="Área"></select>
+        </div>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="@Url.Content("~/css/menu.css")">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="module" src="~/js/menu.js"></script>
-    <script type="module" src="~/js/empleados.js"></script>
+        <div class="form-check form-switch mt-3">
+            <input class="form-check-input" type="checkbox" role="switch" id="checkRegistrarActivo" checked>
+            <label class="form-check-label" for="checkRegistrarActivo">Empleado Activo</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" id="btnRegistrarEmpleado">Registrar Empleado</button>
+    </form>
+</div>
+
+<!-- BOOTSTRAP -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SWEET ALERT -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- JS y CSS locales -->
+<link rel="stylesheet" href="@Url.Content("~/css/menu.css")">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module" src="~/js/menu.js"></script>
+<script type="module" src="~/js/empleados.js"></script>
+<script type="module" src="~/js/registrarEmpleados.js"></script>

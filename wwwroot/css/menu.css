@@ -53,3 +53,9 @@ body {
   margin-left: 220px;
   padding: 20px;
 }
+
+.main-content,
+#viewRegistrarPersonal {
+  margin-left: 220px;
+  padding: 20px;
+}

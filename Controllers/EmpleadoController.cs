@@ -35,5 +35,19 @@ namespace Prueba_DockerNET.Controllers
 
             return data ? Ok(data) : BadRequest(new { message = "No se pudo actualizar"});
         }
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<IActionResult?> registrarEmpleados([FromBody] Empleado empleado)
+        {
+            if (empleado == null)
+            {
+                return BadRequest(new { message = "Empleado Nulo" });
+            }
+            var data = await EmpleadoRepository.registrarEmpleado(empleado);
+
+            return data ? Ok(data) : BadRequest(new { message = "No se pudo Crear" });
+        }
+
     }
 }
