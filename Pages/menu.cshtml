@@ -1,0 +1,129 @@
+@page
+@model dynamic
+@{
+    ViewData["Title"] = "Menú Principal";
+}
+
+
+<div class="sidebar">
+    <a id="btnViewMenuPrincipal" href="#"><i class="fas fa-home"></i> Inicio</a>
+    <a class="dropdown-toggle" data-bs-toggle="collapse" href="#submenuPersonal" role="button" aria-expanded="false"
+        aria-controls="submenuPersonal">
+        Personal
+    </a>
+    <div class="collapse ps-4" id="submenuPersonal">
+        <a id="viewListarPersonal" class="d-block text-decoration-none text-light">Listar</a>
+        <a id="viewRegistrarPersonal" class="d-block text-decoration-none text-light">Registrar</a>
+    </div>
+    <a href="#"><i class="fas fa-clipboard-list"></i> Asistencias</a>
+    <a href="#"><i class="fas fa-calendar-alt"></i> Turnos</a>
+    <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+
+</div>
+
+<div id="viewMenuPrincipal" class="main-content" style="display: block;">
+    <h1>Bienvenido</h1>
+    <p>Este es el contenido principal de tu sistema de asistencia para el hospital.</p>
+</div>
+
+<div id="viewPersonal" style="display: none;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Area</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciòn</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyDinamico">
+
+        </tbody>
+    </table>
+    <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles del empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input type="hidden" id="inputEmpleadoId">
+
+                    <!-- DNI -->
+                    <div class="mb-3">
+                        <label for="modalDNI" class="form-label">DNI</label>
+                        <input type="text" class="form-control" id="modalDNI">
+                    </div>
+
+                    <!-- Nombres -->
+                    <div class="mb-3">
+                        <label for="modalNombres" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="modalNombres">
+                    </div>
+
+                    <!-- Apellido Paterno -->
+                    <div class="mb-3">
+                        <label for="modalApellidoPaterno" class="form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="modalApellidoPaterno">
+                    </div>
+
+                    <!-- Apellido Materno -->
+                    <div class="mb-3">
+                        <label for="modalApellidoMaterno" class="form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" id="modalApellidoMaterno">
+                    </div>
+
+                    <!-- Cargo -->
+                    <div class="mb-3">
+                        <label for="selectCargo" class="form-label">Cargo</label>
+                        <select class="form-select" id="selectCargo">
+                            
+                        </select>
+                    </div>
+
+                    <!-- Área -->
+                    <div class="mb-3">
+                        <label for="selectArea" class="form-label">Area</label>
+                        <select class="form-select" id="selectArea">
+                            
+                        </select>
+                    </div>
+
+                    <!-- Activo -->
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="modalActivo">
+                        <label class="form-check-label" for="modalActivo">¿Activo?</label>
+                    </div>
+
+                    <!-- Fecha Ingreso -->
+                    <div class="mb-3">
+                        <label for="modalFechaIngreso" class="form-label">Fecha de Ingreso</label>
+                        <input type="text" class="form-control" id="modalFechaIngreso" readonly disabled>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btnActualizarEmpleado">Guardar cambios</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/css/menu.css")">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="~/js/menu.js"></script>
+    <script type="module" src="~/js/empleados.js"></script>

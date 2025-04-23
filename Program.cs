@@ -1,5 +1,5 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddRazorPages();
 // Configurar el JSON para usar PascalCase (sin cambiar a camelCase)
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
@@ -18,6 +18,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.MapRazorPages();
 
 app.UseRouting();
 
