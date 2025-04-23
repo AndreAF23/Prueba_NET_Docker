@@ -28,12 +28,12 @@ namespace Prueba_DockerNET.Data
             var (hash,salt) = PasswordHasher.HashPasswordConSalt(user.password);
             var conexion = Conexion.CrearConexion();
             var parametros = new DynamicParameters();
-            parametros.Add("@NOMBRES", user.nombres);
-            parametros.Add("@APELLIDO1", user.apellido1);
-            parametros.Add("@APELLIDO2", user.apellido2);
             parametros.Add("@USUARIO", user.usuario);
             parametros.Add("@PASSWORD_HASH", hash);
             parametros.Add("@PASSWORD_SALT", salt);
+            parametros.Add("@ROL", 2);
+            parametros.Add("@ESTADO", user.estado);
+            parametros.Add("@IDEMPLEADO", user.id_empleado);
 
             var resultado = await conexion.QueryFirstOrDefaultAsync<bool>(
                 "CrearUsuario",

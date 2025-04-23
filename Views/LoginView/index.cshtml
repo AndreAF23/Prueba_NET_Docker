@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Login";
+  ViewBag.Title = "Login";
 }
 
 <h2>Ingrese Usuario</h2>
@@ -8,40 +8,66 @@
   <div class="container py-5 h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
       <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-          class="img-fluid" alt="Phone image">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid"
+          alt="Phone image">
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <form>
-  <!-- Usuario input -->
-  <div data-mdb-input-init class="form-outline mb-4">
-    <input type="text" id="inputUsuario" class="form-control form-control-lg" />
-    <label class="form-label" for="inputUsuario">Usuario</label>
-  </div>
+        <form id="formLogin" style="display: block;" autocomplete="off">
+          <!-- Usuario input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="text" id="inputUsuario" class="form-control form-control-lg" />
+            <label class="form-label" for="inputUsuario">Usuario</label>
+          </div>
 
-  <!-- Password input -->
-  <div data-mdb-input-init class="form-outline mb-4">
-    <input type="password" id="inputPsswd" class="form-control form-control-lg" />
-    <label class="form-label" for="inputPsswd">Contraseña</label>
-  </div>
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="password" id="inputPsswd" class="form-control form-control-lg" />
+            <label class="form-label" for="inputPsswd">Contraseña</label>
+          </div>
 
-  <!-- Submit button -->
-  <button id="btnValidarUsuario" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
-    Sign in
-  </button>
+          <!-- Submit button -->
+          <button id="btnValidarUsuario" type="button" data-mdb-button-init data-mdb-ripple-init
+            class="btn btn-primary btn-lg btn-block">
+            Sign in
+          </button>
 
-  <div class="divider d-flex align-items-center my-4">
-    <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-  </div>
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>
 
-  <a id="btnRegistarUsuario" data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
-    <i class="fab fa-facebook-f me-2"></i>Register User
-  </a>
-</form>
+          <a id="btnGoToRegistro" data-mdb-ripple-init class="btn btn-primary btn-lg btn-block"
+            style="background-color: #3b5998" href="#!" role="button">
+            <i class="fab fa-facebook-f me-2"></i>Register User
+          </a>
+        </form>
+
+        <form id="formRegistro" style="display: none;" autocomplete="off">
+          <div class="form-row" style="margin-top: 3%;">
+            <div class="form-group col-md-6">
+              <label for="inputUsuarioReg">Usuario</label>
+              <input type="email" class="form-control" id="inputUsuarioReg" placeholder="Ingrese Usuario">
+            </div>
+            <div class="form-group col-md-6" style="margin-top: 3%;">
+              <label for="inputPasswordReg">Password</label>
+              <input type="password" class="form-control" id="inputPasswordReg" placeholder="Ingrese Contraseña">
+            </div>
+          </div>
+          <div class="form-check form-switch" style="margin-top: 3%;">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Usuario Activo</label>
+          </div>
+
+          <button id="btnRegistrarUsuario" type="submit" class="btn btn-primary"
+            style="margin-top: 5%;">Registrar</button>
+          <button id="btnLoginVolver" class="btn btn-secondary" style="margin-top: 5%;">Volver</button>
+        </form>
+
       </div>
     </div>
   </div>
 </section>
 <script type="module" src="@Url.Content("~/js/login.js")"></script>
+<script type="module" src="/js/login.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
