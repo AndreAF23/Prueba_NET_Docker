@@ -41,5 +41,28 @@ namespace Prueba_DockerNET.Data
 
             return resultado > 0;
         }
+
+        public static async Task<bool> registrarEmpleado(Empleado empleado)
+        {
+            var conexion = Conexion.CrearConexion();
+            var parametros = new DynamicParameters();
+            parametros.Add("@OPC", 3);
+            parametros.Add("@DNI", empleado.dni);
+            parametros.Add("@NOMBRES", empleado.nombres);
+            parametros.Add("@APPAT", empleado.apellidoPaterno);
+            parametros.Add("@APMAT", empleado.apellidoMaterno);
+            parametros.Add("@CARGO", empleado.cargo);
+            parametros.Add("@AREA", empleado.area);
+            parametros.Add("@ESTADO", empleado.estado);
+
+            var resultado = await conexion.ExecuteAsync(
+                "MNG_EMPLEADOS",
+                parametros,
+                commandType: CommandType.StoredProcedure
+            );
+
+            return resultado > 0;
+        }
+
     }
 }

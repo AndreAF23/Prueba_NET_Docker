@@ -103,7 +103,7 @@ function accederLogin(){
     
     
     setTimeout(function(){
-        window.location.href = `${baseUrl}/AsignaturaView`;
+        window.location.href = `${baseUrl}/Menu`;
     }, 2000);
     limpiarInputs();
 }
