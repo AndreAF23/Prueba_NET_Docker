@@ -6,6 +6,8 @@ builder.Services.AddControllersWithViews()
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 DotNetEnv.Env.Load();
@@ -16,6 +18,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
