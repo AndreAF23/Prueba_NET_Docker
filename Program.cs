@@ -12,11 +12,12 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 DotNetEnv.Env.Load();
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (builder.Configuration.GetValue<bool>("EnableSwagger"))
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
 
 app.UseSwagger();
 app.UseSwaggerUI();
