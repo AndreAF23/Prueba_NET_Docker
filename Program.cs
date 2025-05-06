@@ -18,9 +18,6 @@ if (builder.Configuration.GetValue<bool>("EnableSwagger"))
     app.UseSwaggerUI();
 }
 
-
-app.UseSwagger();
-app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
